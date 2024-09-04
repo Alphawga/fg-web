@@ -1,0 +1,28 @@
+const category = [
+  "Addictive Behavior",
+  "Comfort/Grief",
+  "Depression/Anxiety",
+  "Family Issues",
+  "Finances/Job",
+  "General",
+  "Global Outreach",
+  "God's Will",
+  "Health Issues",
+  "Hospialization",
+  "Life Transitions",
+  "Marriage/Relationship Problems",
+  "Nation",
+  "Persecuted Church",
+  "Salvation/Rededication",
+  "Spiritual Warfare",
+  "Suicidal Tendencies",
+  "Travel",
+  "Staff/Ministry",
+  "Praise Report",
+  "Youth",
+  "My Story/Testimony",
+  "Missionary Support",
+  "Guidance/Direction",
+];
+
+export default category;

@@ -1,0 +1,54 @@
+on:
+  workflow_call:
+  push:
+    branches-ignore:
+      - main
+      - staging
+      - dev
+jobs:
+  integration:
+    name: Checks 🧐
+    runs-on: ubuntu-latest
+    container: node:18
+    env:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: test_db
+      POSTGRES_PORT: 5432
+      DATABASE_URL: "postgres://root:root@postgres:5432/test_db"
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_PORT: ${{ env.POSTGRES_PORT }}
+        options: >-
+          --health-cmd "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          bun install -y
+      - name: Build check
+        run: |
+          bun run generate
+          bun run lint
+          bun run type-check
+          bun run build
+      - name: Migration and seeds check
+        run: |
+          echo "DATABASE_URL=${{ env.DATABASE_URL }}" >> .env
+          bun run migrate
+          bun run migrate:deploy
+          bun run seed

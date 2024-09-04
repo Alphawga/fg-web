@@ -1,0 +1,9 @@
+[
+  {
+    "name": "super-admin",
+    "built_in": true,
+    "active": true,
+    "permission_names": ["fullgospel.super_admin"]
+  }
+  
+]

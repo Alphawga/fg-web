@@ -1,0 +1,21 @@
+jobs:
+  update_database:
+    name: Deploy migrations and seeds
+    runs-on: ubuntu-latest
+    container: node:20
+    needs: integration
+    steps:
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run migrations and seeds
+        run: |
+          echo "DATABASE_URL=${{ secrets.DEV_DATABASE_URL }}" >> .env
+          echo "DATABASE_URL=${{ secrets.DEV_DATABASE_URL_DIRECT }}" >> .env
+          bun i
+          bun run generate
+          # Use `migrate deploy` instead of `migrate dev`
+          bun run migrate:deploy
+          bun run seed

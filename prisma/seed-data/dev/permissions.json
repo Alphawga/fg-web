@@ -1,0 +1,9 @@
+[
+  {
+    "name": "fullgospel.owner",
+    "active": true,
+    "module": "church",
+    "action": "own",
+    "resource_id": "fullgospel"
+  }
+]

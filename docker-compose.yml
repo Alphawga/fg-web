@@ -1,0 +1,11 @@
+services:
+  db:
+    container_name: schoolwave-db
+    image: postgres
+    ports:
+      - 5440:5432
+    environment:
+      - POSTGRES_USER=$DATABASE_USER
+      - POSTGRES_PASSWORD=$DATABASE_PASSWORD
+      - POSTGRES_DB=$DATABASE_NAME
+    
