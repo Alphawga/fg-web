@@ -2,14 +2,13 @@ import { Client, Databases } from 'appwrite';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const client = new Client()
-  .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || 'https://cloud.appwrite.io/v1') // Set the endpoint
-  .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || 'default-project-id'); // Set the project ID
+  .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || 'https://cloud.appwrite.io/v1')
+  .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || 'default-project-id');
 
 const database = new Databases(client);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    // Set the API key on the server-side
     client.headers['X-Appwrite-Key'] = process.env.APPWRITE_API_KEY || '';
 
     const databaseId = '66e51b48003696c4d75f';

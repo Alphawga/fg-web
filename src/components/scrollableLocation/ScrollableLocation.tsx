@@ -3,7 +3,7 @@ import Link from "next/link";
 import { database } from "../../../appwrite";
 
 interface LocationDocument {
-  city?: string;  // Mark as optional to handle cases where 'city' might not be present
+  city?: string;  
 }
 
 export default function ScrollableLocation() {
@@ -14,7 +14,6 @@ export default function ScrollableLocation() {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        // Fetch data from the custom API route you created
         const response = await fetch("/api/fetchLocations");
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -22,7 +21,6 @@ export default function ScrollableLocation() {
 
         const data = await response.json();
 
-        // Assuming data is an array of location objects with a 'city' field
         const locations = data
           .filter((doc: LocationDocument) => typeof doc.city === 'string')
           .map((doc: LocationDocument) => doc.city || '');
