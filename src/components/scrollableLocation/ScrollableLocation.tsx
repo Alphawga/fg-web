@@ -31,7 +31,7 @@ export default function ScrollableLocation () {
           <div key={state} className="my-16 xs:max-md:my-10">
             <p className="relative inline-block font-light">
               <Link
-                href="/"
+                href={`/location/${state}`}
                 className="block text-[#aba7a5] pb-2 text-5xl xs:max-md:text-4xl grow-hover "
               >
                 {state}

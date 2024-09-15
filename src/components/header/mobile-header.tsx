@@ -41,7 +41,7 @@ export default function MobileHeader () {
       {option !== "" && <MobileSecSideNavBar />}
       {extend !== "" && <MobileSideExtend />}
 
-      {/* open/close menu icon */}
+      {/* open/close menu icon: HAMBURGER */}
       <div
         onClick={() => updateOpenSideNav(!openSideNav)}
         className="relative z-10 w-[20%] flex items-center justify-start bg-red-40"
@@ -76,7 +76,7 @@ export default function MobileHeader () {
       <nav className="w-[20%] flex justify-end bg-red-40">
         <ul className="flex items-center justify-end gap-5 font-light text-sm text-white ">
           <li className="relative">
-            <Link href="/give" className="grow-hover">
+            <Link href="https://www.cogwm.org/give/" className="grow-hover">
               GIVE
             </Link>
           </li>

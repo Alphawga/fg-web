@@ -17,7 +17,7 @@ export default function WelcomeHome () {
         {" "}
       </div>
       <div className="absolute z-10 top-0 w-1/3 xs:max-md:w-full h-full left-36 xs:max-md:left-5 flex flex-col justify-center space-y-5 xs:max-md:space-y-3">
-        <h2 className="text-[#ABA7A5] font-semibold tracking-wider text-3xl xs:max-md:text-2xl">
+        <h2 className="text-[#ABA7A5] font-semibold tracking-wider text-3xl xs:max-md:text-xl">
           WELCOME TO FULL GOSPEL CHURCH OF GOD
         </h2>
         <div>

@@ -30,16 +30,16 @@ export default function Home () {
       <div className="w-[80%] xs:max-md:w-[90%] mx-auto ">
         <div className="flex xs:max-md:flex-col xs:max-md:gap-20 items-center xs:max-md:items-start py-20 border-b border-[#ABA7A5] border-opacity-20">
           <div className="bg-red-40 w-[30%] xs:max-md:w-full">
-            <div className="relative size-28">
+            <div className="relative size-28 xs:max-md:size-24">
               <Image
                 fill={true}
                 src="/church-logo.png"
                 alt="Full Gospel Church Logo."
               />
             </div>
-            <h2 className="font-medium tracking-widest text-3xl">
-              FULL <br />
-              GOSPEL
+            <h2 className="font-medium tracking-wide text-2xl xs:max-md:text-2xl">
+              FULL GOSPEL <br />
+              CHURCH OF GOD
             </h2>
             <div className="mt-10 xs:max-md:mt-5 space-y-8 xs:max-md:space-y-4">
               <h3 className="font-medium tracking-widest">HEADQUARTERS</h3>
@@ -53,7 +53,7 @@ export default function Home () {
               </p>
               <p className=" text-[#ABA7A5] font-medium">
                 <Link href="/" className="hover:underline">
-                  +234
+                  (+234) 813-883-2513
                 </Link>
               </p>
               <Link
@@ -129,7 +129,7 @@ export default function Home () {
             </div>
           </div>
         </div>
-        <div className="py-14 xs:max-md:py-10 flex xs:max-md:flex-col xs:max-md:gap-8 items-center justify-between text-sm text-[#aba7a5] font-medium">
+        <div className="py-14 xs:max-md:py-10 flex xs:max-md:flex-col xs:max-md:gap-5 items-center justify-between text-sm text-[#aba7a5] font-medium">
           <div className="flex items-center gap-5">
             {[
               { path: "/mail", icon: <Mail className="socials-style" /> },
@@ -158,7 +158,7 @@ export default function Home () {
             })}
           </div>
           <div>
-            <p>
+            <p className="text-center">
               &#169; {new Date().getFullYear()} Full Gospel Church Of God. All Rights
               Reserved.
             </p>

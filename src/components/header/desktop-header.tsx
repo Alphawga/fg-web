@@ -71,13 +71,13 @@ export default function DesktopHeader () {
           <button className="relative group font-medium">
             LOCATIONS
             <div className="hidden group-hover:flex absolute left-0 top-full max-h-[80vh]  w-80 pt-5 overflow-scroll  no-scrollbar  justify-start">
-              <ul className="relative py-2 bg-[#161415] inline-block">
+              <ul className="relative py-2 inline-block">
                 {locations.map((item) => (
                   <li
                     key={item}
-                    className="px-3 py-2 hover:bg-white hover:bg-opacity-5 cursor-pointer text-left"
+                    className="px-3 py-2 bg-[#161415] hover:bg-black hover:bg-opacity-5 hover:backdrop-blur-sm cursor-pointer text-left"
                   >
-                    <Link href="/">{item}</Link>
+                    <Link href={`/location/${item}`}>{item}</Link>
                   </li>
                 ))}
               </ul>
@@ -88,7 +88,7 @@ export default function DesktopHeader () {
         <nav>
           <ul className="flex items-center gap-10 font-medium">
             <li className="relative">
-              <Link href="/give" className="grow-hover">
+              <Link href="https://www.cogwm.org/give/" className="grow-hover">
                 GIVE
               </Link>
             </li>

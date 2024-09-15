@@ -42,7 +42,7 @@ export default function Leadership () {
     >
       <LeadershipHero />
       <div className="bg-[#231f20]">
-        <div className="w-[60%] mx-auto py-20">
+        <div className="w-[60%] xs:max-md:w-[90%]  mx-auto py-20 xs:max-md:py-10">
           <LeadershipBody />
         </div>
       </div>

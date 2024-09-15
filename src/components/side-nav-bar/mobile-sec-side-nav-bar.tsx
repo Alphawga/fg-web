@@ -34,7 +34,7 @@ export default function MobileSecSideNavBar () {
         <div className="text-[#d3b975] rotate-180 inline-block">
           <ArrowRight />
         </div>
-        <p className="text-[#aba7a5]">MAIN MENU</p>
+        <p className="text-[#aba7a5]">MAIN MENU ({option.toUpperCase()})</p>
       </div>
       <div className="px-5">
         {option === "experience" && <SideNavLinks link={experienceLinks} />}
