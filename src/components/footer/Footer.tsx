@@ -1,6 +1,6 @@
 "use client";
 
-import locations from "@/contents/locations";
+import useLocationsStore from "@/store/locations.store";
 import { Facebook, Instagram, Mail, Twitter, YoutubeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,11 +25,13 @@ function ArrowRight () {
 }
 
 export default function Home () {
+  const locations = useLocationsStore((state) => state.locations);
+
   return (
     <footer className="bg-[#161415] text-white">
       <div className="w-[80%] xs:max-md:w-[90%] mx-auto ">
         <div className="flex xs:max-md:flex-col xs:max-md:gap-20 items-center xs:max-md:items-start py-20 border-b border-[#ABA7A5] border-opacity-20">
-          <div className="bg-red-40 w-[30%] xs:max-md:w-full">
+          <div className="w-[30%] xs:max-md:w-full">
             <div className="relative size-28 xs:max-md:size-24">
               <Image
                 fill={true}
@@ -73,9 +75,13 @@ export default function Home () {
             </div>
           </div>
 
-          <div className="w-[70%] xs:max-md:w-full flex xs:max-md:flex-wrap items-start xs:max-md:justify-between gap-16 xs:max-md:gap-[3%] bg-red-20">
-            <div className="w-[35%] xs:max-md:w-[45%] bg-red-30">
-              <h3 className="font-medium tracking-widest">FULL GOSPEL<br/>CHURCH OF GOD</h3>
+          <div className="w-[70%] xs:max-md:w-full flex xs:max-md:flex-wrap xs:max-md:justify-between xs:max-md:gap-[3%] h-full">
+            <div className="w-[25%] xs:max-md:w-[45%]">
+              <h3 className="font-medium tracking-widest">
+                FULL GOSPEL
+                <br />
+                CHURCH OF GOD
+              </h3>
               <ul className="text-[#aba7a5] mt-5 space-y-5 flex flex-col items-start">
                 {[
                   { text: "About", path: "/about" },
@@ -93,11 +99,14 @@ export default function Home () {
                 ))}
               </ul>
             </div>
-            <div className="w-[20%] xs:max-md:w-[45%]">
+            <div className="w-[25%] xs:max-md:w-[45%]">
               <h3 className="font-medium tracking-widest">RESOURCES</h3>
               <ul className="text-[#aba7a5] mt-5 space-y-5  flex flex-col items-start">
                 {[
-                  { text: "Articles", path: "https://www.evangelmagazine.com/" },
+                  {
+                    text: "Articles",
+                    path: "https://www.evangelmagazine.com/",
+                  },
                   { text: "Events", path: "/" },
                   { text: "Media Inquiries", path: "/" },
                   { text: "Network", path: "/" },
@@ -112,15 +121,18 @@ export default function Home () {
                 ))}
               </ul>
             </div>
-            <div className="w-[60%] xs:max-md:mt-20 h-72">
+            <div className="w-[50%] xs:max-md:w-full xs:max-md:mt-20 h-[60vh] overflow-y-hidden overflow-x-auto">
               <h3 className="font-medium tracking-widest">LOCATIONS</h3>
               <ul className="text-[#aba7a5] mt-5 gap-x-10 gap-y-5 flex flex-col items-start flex-wrap h-full bg-green-40">
-                {locations.map((states) => {
+                {locations.map((state) => {
                   return (
-                    <li key={states} className="relative inline-block">
+                    <li key={state} className="relative inline-block">
                       {" "}
-                      <Link href="/" className="grow-hover">
-                        {states}
+                      <Link
+                        href={`/location/${state}`}
+                        className="block text-[#aba7a5] pb-2 xs:max-md:text-lg grow-hover "
+                      >
+                        {state}
                       </Link>
                     </li>
                   );
@@ -159,8 +171,8 @@ export default function Home () {
           </div>
           <div>
             <p className="text-center">
-              &#169; {new Date().getFullYear()} Full Gospel Church Of God. All Rights
-              Reserved.
+              &#169; {new Date().getFullYear()} Full Gospel Church Of God. All
+              Rights Reserved.
             </p>
           </div>
           <div className="flex gap-2">

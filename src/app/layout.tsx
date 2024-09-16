@@ -18,7 +18,7 @@ export default function RootLayout ({ children }: Readonly<{
 {
   const pathname = usePathname();
 
-  if(pathname.includes("/admin") || pathname.includes("/login")) {
+  if(pathname?.includes("/admin") || pathname?.includes("/login")) {
     return(
       <html lang="en">
         <body className={`relative ${inter.className}`}>

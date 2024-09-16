@@ -5,11 +5,11 @@ import { useState } from "react";
 import DesktopSideNavBar from "@/components/side-nav-bar/desktop-side-nav-bar";
 import Link from "next/link";
 import useStyleHeaderStore from "@/store/style-header.store";
-import locations from "@/contents/locations";
 import useScrollPositionStore from "@/store/scroll-position.store";
 import Image from "next/image";
 import useDesktopSecSideNavBarStore from "@/store/desktop-sec-side-nav.store";
 import DesktopSecSideNavBar from "@/components/side-nav-bar/desktop-sec-side-nav-bar";
+import useLocationsStore from "@/store/locations.store";
 
 export default function DesktopHeader () {
   const [option, setOption] = useState("");
@@ -17,6 +17,7 @@ export default function DesktopHeader () {
   const headerStyle = useStyleHeaderStore((state) => state.headerStyle);
   const scrollPosition = useScrollPositionStore((state) => state.scrollPosition);
   const desktopSecSideNavBar = useDesktopSecSideNavBarStore(state => state.secSideNav);
+  const locations = useLocationsStore(state => state.locations);
 
   return (
     <header

@@ -89,17 +89,13 @@ export default function Podcast () {
     },
   ];
 
-  function play () {
-    const song = new Audio("https://res.cloudinary.com/dvc76hnjd/video/upload/FIF_01-28-24_15_1_pi6qbj.mp3");
+  // function play () {
+  const song = new Audio("https://res.cloudinary.com/dvc76hnjd/video/upload/FIF_01-28-24_15_1_pi6qbj.mp3");
 
-    // const song = new Audio("/burn.mp3");
-
-    song.play();
-  }
+  song.play();
 
   useEffect(() => {
-    play();
-    setPodcast(inspireListen[parseInt(param.slug as string) - 1]);
+    setPodcast(inspireListen[parseInt(param?.slug as string) - 1]);
   }, []);
 
   return (
