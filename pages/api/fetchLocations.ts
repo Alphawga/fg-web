@@ -16,8 +16,8 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
     const response = await database.listDocuments(databaseId, collectionId);
 
     res.status(200).json(response.documents);
-  } catch (error: any) {
-    console.error("Error fetching documents:", error.message || error);
+  } catch (error) {
+    console.error("Error fetching documents:", error);
     res.status(500).json({ error: "Failed to fetch locations" });
   }
 }
