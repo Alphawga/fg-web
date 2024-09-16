@@ -89,8 +89,8 @@ export default function ScrollableLocation () {
         updateLocations(locationsCity); //store only the locations city name in global state
         updateLocationsData(data); //store all the data about the locations in global state
       } catch (error) {
-        console.error("Error fetching locations:", error.message || error);
-        setError(`Failed to fetch locations: ${error.message || error}`);
+        console.error("Error fetching locations:", error);
+        setError(`Failed to fetch locations: ${error}`);
       } finally {
         setLoading(false);
       }
