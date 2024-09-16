@@ -14,17 +14,19 @@ export default function Leadership () {
         />
       </div>
       <div className="absolute z-10 top-0 w-1/3 xs:max-md:w-[85%] h-full right-36 xs:max-md:right-5 flex flex-col justify-center text-right space-y-5 xs:max-md:space-y-3">
-        <h2 className="text-white tracking-wider text-xl xs:max-md:text-base">LEADERSHIP</h2>
+        <h2 className="text-white tracking-wider text-xl xs:max-md:text-base">
+          LEADERSHIP
+        </h2>
         <p className="text-white text-2xl font-semibold xs:max-md:text-2xl">
-          Pastor Rob & Becca Ketterling
+          Alex & Leah Abiola
         </p>
         <div>
           <p className="text-[#aba7a5] text-base leading-8 xs:max-md:text-base">
             {" "}
-            “We are a local church with global vision to raise up and send out
-            500 full-time missionaries from our church. We believe everyone
-            deserves the right to hear about Jesus Christ, so we’re saying ‘Here
-            I am. Send Me.’”
+            Alex and Leah served as Superintendent of the anglophone West
+            African nations where they focus on ministerial training, leadership
+            empowerment, and medical assistance and currently serving as the
+            Africa Project Coordinator.
           </p>
           <p className="text-white mt-3 text-base xs:max-md:text-base tracking-wider">
             {" "}

@@ -55,11 +55,11 @@ function LatestSermonsComponent ({
 
 export default function LatestSermons () {
   return (
-    <div className="relative h-full overflow-scroll no-scrollbar pb-40">
-      <div className="fixed z-20 left-0 bottom-0 w-[90%]">
+    <div className="relative h-full w-full overflow-scroll no-scrollbar pb-40">
+      <div className="fixed z-20 left-0 -bottom-2 w-1/3 ml-[33%] xs:max-md:ml-0 xs:max-md:w-[90%]">
         <Link
           href="https://churchofgod.org/category"
-          className="group w-full h-14 bg-[#231f20] shadow-lg shadow-[#1c1c1c] flex items-center gap-2 px-5 cursor-pointer"
+          className="group w-full h-14 bg-[#1e191b] shadow-lg shadow-[#282626] flex items-center gap-2 px-5 cursor-pointer"
         >
           <p className="text-[#aba7a5] hover:text-white uppercase">
             More Sermons

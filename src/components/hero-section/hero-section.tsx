@@ -22,12 +22,15 @@ function ArrowRight () {
 
 export default function HeroSection () {
   return (
-    <section id="home-hero" className="relative h-screen xs:max-md:h-[80vh] w-full">
+    <section
+      id="home-hero"
+      className="relative h-screen xs:max-md:h-[80vh] w-full"
+    >
       <BackgroundVideo />
 
-      <div className="absolute text-white bottom-14 xs:max-md:bottom-5 left-32 xs:max-md:left-5 space-y-3  xs:max-md:space-y-2">
-        <p className="tracking-widest font-medium  xs:max-md:text-xs">
-          TODAY - SOAP:
+      <div className="absolute text-white bottom-14 xs:max-md:bottom-5 left-32 xs:max-md:left-5 space-y-2 xs:max-md:space-y-2">
+        <p className="tracking-widest font-medium xs:max-md:text-xs">
+          SCRIPTURE OF THE DAY:
         </p>
         <p className="font-semibold  xs:max-md:text-sm">Deuteronomy 9-10</p>
         <Link

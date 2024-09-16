@@ -89,8 +89,13 @@ export default function Podcast () {
     },
   ];
 
+  // function play () {
+  const song = new Audio("https://res.cloudinary.com/dvc76hnjd/video/upload/FIF_01-28-24_15_1_pi6qbj.mp3");
+
+  song.play();
+
   useEffect(() => {
-    setPodcast(inspireListen[parseInt(param.slug as string) - 1]);
+    setPodcast(inspireListen[parseInt(param?.slug as string) - 1]);
   }, []);
 
   return (
@@ -131,17 +136,6 @@ export default function Podcast () {
                   </span>
                 </h2>
                 <div className="pt-5 xs:max-md:pt-3">
-                  <audio controls autoPlay className="w-full">
-                    {/* <source src={`${podcast.link}`} type="audio/mp3" /> */}
-                    {/* <source src="https://drive.google.com/file/d/1B-Pn9YEpInAyvyr7F_p1PV2Clk_UkLiT/view?usp=drive_link" />
-                    <source src="https://drive.google.com/file/d/1B-Pn9YEpInAyvyr7F_p1PV2Clk_UkLiT/view?usp=drive_link" />
-                    <source src="https://drive.google.com/file/d/1B-Pn9YEpInAyvyr7F_p1PV2Clk_UkLiT/view?usp=drive_link" /> */}
-                    <source src="https://docs.google.com/uc?export=download&id=1B-Pn9YEpInAyvyr7F_p1PV2Clk_UkLiT" type="audio/mp3" />
-
-                    {/* <source src="/podcast/fif1.mp3" type="audio/mp3"/> */}
-
-                    Your browser does not support the audio element.
-                  </audio>
                 </div>
               </div>
             </div>
