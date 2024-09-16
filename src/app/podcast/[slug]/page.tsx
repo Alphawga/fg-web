@@ -99,7 +99,7 @@ export default function Podcast () {
 
   useEffect(() => {
     play();
-    setPodcast(inspireListen[parseInt(param.slug as string) - 1]);
+    setPodcast(inspireListen[parseInt(param?.slug as string) - 1]);
   }, []);
 
   return (
