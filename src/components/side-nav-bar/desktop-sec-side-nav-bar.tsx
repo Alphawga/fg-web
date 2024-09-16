@@ -13,7 +13,7 @@ export default function DesktopSecSideNavBar () {
   return (
     <div onMouseLeave={() => updateDesktopSecSideNavBar("")} className="absolute -z-10 bg-[#181616] top-0 bottom-0 left-[33%] h-screen w-1/3 animate-accordion-left pt-32">
       <div className="h-full w-full overflow-scroll no-scrollbar px-10">
-        {secSideNav.toUpperCase() === "IN PERSON" && <InPerson />}
+        {((secSideNav.toUpperCase() === "IN PERSON") || (secSideNav.toUpperCase() === "LOCATIONS")) && <InPerson />}
         {secSideNav.toUpperCase() === "ONLINE" && <Online />}
         {secSideNav.toUpperCase() === "LATEST SERMONS" && <LatestSermons />}
       </div>
