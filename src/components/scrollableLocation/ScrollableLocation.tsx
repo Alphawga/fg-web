@@ -1,15 +1,49 @@
-"use client";
-
-import locations from "@/contents/locations";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
+interface LocationDocument {
+  city?: string;
+}
+
 export default function ScrollableLocation () {
+  const [locationsData, setLocationsData] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const response = await fetch("/api/fetchLocations");
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        const locations = data
+          .filter((doc: LocationDocument) => typeof doc.city === "string")
+          .map((doc: LocationDocument) => doc.city || "");
+
+        setLocationsData(locations);
+      } catch (error: any) {
+        console.error("Error fetching locations:", error.message || error);
+        setError(`Failed to fetch locations: ${error.message || error}`);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLocations();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+  if (locationsData.length === 0) return <p>No locations available.</p>;
+
   return (
     <section className="relative z-10 w-full bg-opacity-90 flex xs:max-md:flex-col">
-      <div
-        id="leadership"
-        className="absolute size-full -z-10 bg-red-400"
-      ></div>
+      <div id="leadership" className="absolute size-full -z-10 bg-red-400"></div>
       <div className="absolute -z-10 bg-black opacity-80 size-full"></div>
       <div className="absolute -z-10 bg-gradient-to-tl from-black from-[20%] opacity-70 size-full"></div>
 
@@ -27,7 +61,7 @@ export default function ScrollableLocation () {
       </div>
 
       <div className="w-1/2 xs:max-md:mx-auto h-full pb-40 pt-24">
-        {locations.map((state) => (
+        {locationsData.map((state) => (
           <div key={state} className="my-16 xs:max-md:my-10">
             <p className="relative inline-block font-light">
               <Link
