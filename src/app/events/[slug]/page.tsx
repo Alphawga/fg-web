@@ -7,7 +7,8 @@ import styleHeader from "@/lib/style-header";
 import useLocationsStore from "@/store/locations.store";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import LocationsHero from "@/app/location/components/location-hero";
+import EventsHero from "@/app/events/components/events-hero";
+import EventsDetails from "@/app/events/components/events-details";
 import EventsScroll from "@/components/events-scroll-1/events-scroll";
 import HomeFooter from "@/components/footer/Footer";
 import events from "@/contents/events";
@@ -22,30 +23,9 @@ type EventsType = {
   location: string;
 };
 
-interface LocationType {
-  id: null;
-  name: string;
-  address: string;
-  city: string;
-  state: string;
-  country: string;
-  postal_code: string;
-  default: boolean;
-  $id: string;
-  $createdAt: string;
-  $updatedAt: string;
-  $permissions: string[];
-  pastors: string[];
-  event: EventsType[];
-  news: string[];
-  offering: string[];
-  $databaseId: string;
-  $collectionId: string;
-}
-
-export default function LocationPage () {
+export default function EventsPage () {
   const params = useParams<{ slug: string }>();
-  const [locationDetails, setLocationDetails] = useState<LocationType | "">("");
+  const [eventDetails, setEventDetails] = useState<EventsType | "">("");
   const locationsData = useLocationsStore((state) => state.locationsData);
   const updateHeaderState: (id: string) => void = useShowHeaderStore((state) => state.setHeaderState);
   const updateHeaderStyle: (id: string) => void = useStyleHeaderStore((state) => state.setHeaderStyle);
@@ -54,27 +34,28 @@ export default function LocationPage () {
 
   useEffect(() => {
     //if locationsData hasn't been populated, force user to homepage to populate locationsData
-    if (locationsData.length === 0) {
-      window.location.href = "/";
+    // if (locationsData.length === 0) {
+    //   window.location.href = "/";
 
-      return;
-    }
+    //   return;
+    // }
 
-    const details = locationsData.filter(
-      (data) => data.city === params?.slug.replaceAll("%20", " ")
+    // alert(params?.slug.replace("%20", " "));
+
+    const details = events.filter(
+      (event) => event.title === params?.slug.replaceAll("%20", " ")
     );
 
-    setLocationDetails(details[0]);
+    // alert(details);
+
+    setEventDetails(details[0]);
   }, []);
 
   return (
-    <main onScroll={() => styleHeader("location-hero", updateHeaderState, updateHeaderStyle, scrollPosition, updateScrollPosition)} className="relative h-screen w-full overflow-y-scroll overflow-x-hidden no-scrollbar">
-      <LocationsHero locationDetails={locationDetails as LocationType} />
-      <EventsScroll
-        title={`EVENTS IN ${(locationDetails as LocationType).city}`}
-        events={events}
-
-      />
+    <main onScroll={() => styleHeader("events-hero", updateHeaderState, updateHeaderStyle, scrollPosition, updateScrollPosition)} className="relative h-screen w-full overflow-y-scroll overflow-x-hidden no-scrollbar">
+      <EventsHero eventDetails={eventDetails as EventsType} />
+      <EventsDetails eventDetails={eventDetails as EventsType} />
+      <EventsScroll title="YOU MIGHT ALSO LIKE" events={events} />
       <HomeFooter />
     </main>
   );

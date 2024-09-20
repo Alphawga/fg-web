@@ -11,6 +11,7 @@ import HomeFooter from "@/components/footer/Footer";
 import Leadership from "@/components/leadership/leadership";
 import styleHeader from "@/lib/style-header";
 import WelcomeHome from "@/components/welcomeHome/WelcomeHome";
+import events from "@/contents/events";
 
 export default function Home () {
   const updateHeaderState: (id: string) => void = useShowHeaderStore((state) => state.setHeaderState);
@@ -21,10 +22,10 @@ export default function Home () {
   return (
     <main onScroll={() => styleHeader("home-hero", updateHeaderState, updateHeaderStyle, scrollPosition, updateScrollPosition)} className="relative h-screen w-full overflow-y-scroll overflow-x-hidden no-scrollbar">
       <HeroSection />
-      <EventsScroll />
+      <EventsScroll title="MEDIA EVENTS AROUND FULL GOSPEL CHURCH OF GOD" events={events} />
       <WelcomeHome />
       <ScrollableLocation />
-      <EventsScroll />
+      <EventsScroll title="MEDIA EVENTS AROUND FULL GOSPEL CHURCH OF GOD" events={events} />
       <BeInspired />
       <Leadership />
       <HomeFooter />

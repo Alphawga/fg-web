@@ -8,6 +8,16 @@ interface LocationDocument {
   city?: string;
 }
 
+type EventsType = {
+  id: string;
+  title: string;
+  description: string;
+  start_date: string;
+  end_date: string;
+  location_id: string;
+  location: string;
+};
+
 interface LocationType {
   id: null;
   name: string;
@@ -22,14 +32,14 @@ interface LocationType {
   $updatedAt: string;
   $permissions: string[];
   pastors: string[];
-  event: string[];
+  event: EventsType[];
   news: string[];
   offering: string[];
   $databaseId: string;
   $collectionId: string;
 }
 
-function LocationLoadingState () {
+function LocationLoadingState ({ error }: {error: string}) {
   return (
     <section className="relative z-10 w-full bg-opacity-90 flex xs:max-md:flex-col h-[80vh] bg-yellow-500">
       <div
@@ -41,13 +51,12 @@ function LocationLoadingState () {
 
       <div className="sticky xs:max-md:z-10 top-[40vh] xs:max-md:top-0 w-1/2 xs:max-md:w-full h-40 flex items-center px-32 xs:max-md:px-5 my-40 xs:max-md:my-0 xs:max-md:pt-52 xs:max-md:pb-24 xs:max-md:bg-black xs:max-md:bg-opacity-50 xs:max-md:backdrop-blur-md">
         <div>
-          <p className="animate-pulse text-[5rem] xs:max-md:text-5xl md:text-[4rem] font-light text-[#aba7a5]">
-            Loading Locations ...
+          <p className={`${error && "animate-pulse"} text-[5rem] xs:max-md:text-5xl md:text-[4rem] font-light text-[#aba7a5]`}>
+            {error ? "Error Fetching Locations (Refresh Page)" : "Loading Locations ..." }
           </p>
           <h2 className="mt-10 xs:max-md:mt-5 text-2xl xs:max-md:text-xl font-medium text-[#aba7a5]">
             <span className="text-white"> We are</span>
-            <span className="text-[#d3b975]"> one church </span> with multiple
-            locations
+            <span className="text-[#d3b975]"> one church </span> with multiple locations
           </h2>
         </div>
       </div>
@@ -99,8 +108,8 @@ export default function ScrollableLocation () {
     locationsData.length === 0 ? fetchLocations() : setLoading(false);  // only call fetchLocations() when locationsData is an empty array
   }, []);
 
-  if (loading) return <LocationLoadingState />;
-  if (error) return <p>{error}</p>;
+  if (loading) return <LocationLoadingState error={error} />;
+  if (error) return <LocationLoadingState error={error} />;
   if (locationsData?.length === 0) return <p>No locations available.</p>;
 
   return (

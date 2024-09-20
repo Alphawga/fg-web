@@ -1,5 +1,15 @@
 import { create } from "zustand";
 
+type EventsType = {
+  id: string;
+  title: string;
+  description: string;
+  start_date: string;
+  end_date: string;
+  location_id: string;
+  location: string;
+};
+
 interface LocationsDataType {
   id: null;
   name: string;
@@ -14,7 +24,7 @@ interface LocationsDataType {
   $updatedAt: string;
   $permissions: string[];
   pastors: string[];
-  event: string[];
+  event: EventsType[];
   news: string[];
   offering: string[];
   $databaseId: string;
