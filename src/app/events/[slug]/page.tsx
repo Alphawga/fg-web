@@ -34,19 +34,17 @@ export default function EventsPage () {
 
   useEffect(() => {
     //if locationsData hasn't been populated, force user to homepage to populate locationsData
-    // if (locationsData.length === 0) {
-    //   window.location.href = "/";
+    if (locationsData.length === 0) {
+      window.location.href = "/";
 
-    //   return;
-    // }
+      return;
+    }
 
-    // alert(params?.slug.replace("%20", " "));
+    alert(params?.slug.replace("%20", " "));
 
     const details = events.filter(
       (event) => event.title === params?.slug.replaceAll("%20", " ")
     );
-
-    // alert(details);
 
     setEventDetails(details[0]);
   }, []);

@@ -32,7 +32,12 @@ interface LocationType {
   $collectionId: string;
 }
 
-function GiveOffering ({ setGiveOffering, locationDetails }: { locationDetails: LocationType }) {
+type OfferingProps = {
+  setGiveOffering: React.Dispatch<React.SetStateAction<boolean>>;
+  locationDetails: LocationType;
+};
+
+function GiveOffering ({ setGiveOffering, locationDetails }: OfferingProps) {
   return (
     <div className="fixed z-10 size-full bg-black bg-opacity-50 backdrop-blur-md flex items-center justify-center">
       <div className="relative w-1/3 mx-auto p-5 bg-white rounded-md border-4 border-fg-gold">
