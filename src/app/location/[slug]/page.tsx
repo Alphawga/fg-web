@@ -1,5 +1,6 @@
 "use client";
 
+import { trpc } from "@/app/_providers/trpc-provider";
 import useLocationsStore from "@/store/locations.store";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -27,21 +28,11 @@ interface LocationType {
 
 export default function LocationPage () {
   const params = useParams<{ slug: string }>();
-  const [locationDetails, setLocationDetails] = useState<LocationType | "">("");
-  const locationsData = useLocationsStore(state => state.locationsData);
 
-  useEffect(() => {
-    //if locationsData hasn't been populated, force user to homepage to populate locationsData
-    if (locationsData.length === 0) {
-      window.location.href = "/";
+ 
+const location = trpc.getSingleLocation.useQuery({name: params?.slug as string})
 
-      return;
-    }
 
-    const details = locationsData.filter(data => data.city === params?.slug.replace("%20", " "));
-
-    setLocationDetails(details[0]);
-  }, []);
 
   return (
     <section>
@@ -49,9 +40,7 @@ export default function LocationPage () {
         <div className="absolute size-full bg-gradient-to-tr from-black from-[70%] opacity-50"></div>
         <div className="absolute size-full flex items-center justify-center text-[4rem] text-white tracking-widest">
           <p className="p-10 rounded-md bg-black bg-opacity-20 backdrop-blur">
-            {params?.slug.replace("%20", " ")}<br />
-            {(locationDetails as LocationType).address}<br />
-            {(locationDetails as LocationType).postal_code}
+      {location.data?.name}
           </p>
         </div>
       </div>

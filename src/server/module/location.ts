@@ -1,4 +1,4 @@
-import { createLocationSchema, deleteLocationSchema, findLocationByIdSchema, updateLocationSchema } from "@/lib/dtos";
+import { createLocationSchema, deleteLocationSchema, findLocationByIdSchema, getLocationByNameSchema, updateLocationSchema } from "@/lib/dtos";
 import prisma from "@/lib/prisma";
 import { publicProcedure } from "@/server/trpc";
 
@@ -50,5 +50,11 @@ export const getAllLocations = publicProcedure.query(async () =>{
 export const findLocationById = publicProcedure.input(findLocationByIdSchema).query(async (opts) =>{
   return await prisma.location.findUnique(
     { where: { id: opts.input.location_id } }
+  );
+});
+
+export const getSingleLocation = publicProcedure.input(getLocationByNameSchema).query(async (opts) =>{
+  return await prisma.location.findFirst(
+    { where: { name: opts.input.name } }
   );
 });

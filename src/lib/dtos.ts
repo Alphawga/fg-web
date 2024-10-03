@@ -94,6 +94,8 @@ export const updateNewsSchema = z.object({
 
 export const findLocationByIdSchema = z.object({ location_id: z.string() });
 
+export const getLocationByNameSchema = z.object({ name: z.string() });
+
 export const deleteNewsSchema = z.object({ id: z.string() });
 
 export type TcreateNewsSchema = z.infer<typeof createNewsSchema>;
