@@ -2,7 +2,7 @@ import useLocationsStore from "@/store/locations.store";
 import Link from "next/link";
 
 export default function InPerson () {
-  const locations = useLocationsStore((state) => state.locations);
+  const locations = useLocationsStore((state) => state.locationsData);
 
   return (
     <div className="h-full overflow-auto space-y-5">
@@ -10,13 +10,13 @@ export default function InPerson () {
         CAMPUS LOCATIONS
       </h3>
       <ul className="text-[#ABA7A5]">
-        {locations.map((state) => (
-          <li key={state} className="my-2 relative">
+        {locations.map((location) => (
+          <li key={location.id} className="my-2 relative">
             <Link
-              href={`/location/${state}`}
+              href={`/location/${location.name}`}
               className="text-[#aba7a5] pb-2 text-xl xs:max-md:text-lg hover:text-white "
             >
-              {state}
+              {location.name}
             </Link>
           </li>
         ))}

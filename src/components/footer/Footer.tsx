@@ -25,7 +25,7 @@ function ArrowRight () {
 }
 
 export default function Home () {
-  const locations = useLocationsStore((state) => state.locations);
+  const locations = useLocationsStore((state) => state.locationsData);
 
   return (
     <footer className="bg-[#161415] text-white">
@@ -124,15 +124,15 @@ export default function Home () {
             <div className="w-[50%] xs:max-md:w-full xs:max-md:mt-20 h-[60vh] overflow-y-hidden overflow-x-auto">
               <h3 className="font-medium tracking-widest">LOCATIONS</h3>
               <ul className="text-[#aba7a5] mt-5 gap-x-10 gap-y-5 flex flex-col items-start flex-wrap h-full bg-green-40">
-                {locations.map((state) => {
+                {locations?.map((location) => {
                   return (
-                    <li key={state} className="relative inline-block">
+                    <li key={location.id} className="relative inline-block">
                       {" "}
                       <Link
-                        href={`/location/${state}`}
+                        href={`/location/${location.name}`}
                         className="block text-[#aba7a5] pb-2 xs:max-md:text-lg grow-hover "
                       >
-                        {state}
+                        {location.name}
                       </Link>
                     </li>
                   );

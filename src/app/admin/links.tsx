@@ -14,27 +14,27 @@ export const links = [
   },
   {
     name: "Users",
-    url: "admin/users",
+    url: "/admin/users",
     icon: <LuUser data-cy="schoolIcon" className="size-5 mr-2" />,
   },
   {
     name: "Location",
-    url: "admin/locations",
+    url: "/admin/locations",
     icon: <IoLocation data-cy="admissionIcon" className="size-5 mr-2" />,
   },
   {
     name: "Events",
-    url: "admin/events",
+    url: "/admin/events",
     icon: <MdEventNote  data-cy="eventIcon" className="size-5 mr-2" />,
   },
   {
     name: "Locations",
-    url: "admin/locations",
+    url: "/admin/locations",
     icon: <IoLocationOutline  data-cy="locationIcon" className="size-5 mr-2" />,
   },
   {
     name: "News",
-    url: "admin/news",
+    url: "/admin/news",
     icon: <FaNewspaper  data-cy="newsIcon" className="size-5 mr-2" />,
   },
 ];

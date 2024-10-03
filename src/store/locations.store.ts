@@ -1,3 +1,4 @@
+import { Location } from "@prisma/client";
 import { create } from "zustand";
 
 interface LocationsDataType {
@@ -22,17 +23,15 @@ interface LocationsDataType {
 }
 
 interface LocationsState {
-  locations: string[];
-  locationsData: LocationsDataType[];
-  setLocations: (newLocations: string[]) => void;
-  setLocationsData: (newLocationsData: LocationsDataType[]) => void;
+ 
+  locationsData: Location[];
+
+  setLocationsData: (newLocationsData: Location[]) => void;
 }
 
 const useLocationsStore = create<LocationsState>((set) => ({
-  locations: [],
   locationsData: [],
-  setLocations: (newLocations: string[]) => set(() => ({ locations: newLocations })),
-  setLocationsData: (newLocationsData: LocationsDataType[]) => set(() => ({ locationsData: newLocationsData })),
+  setLocationsData: (newLocationsData: Location[] ) => set(() => ({ locationsData: newLocationsData })),
 }));
 
 export default useLocationsStore;

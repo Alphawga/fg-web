@@ -17,7 +17,7 @@ export default function DesktopHeader () {
   const headerStyle = useStyleHeaderStore((state) => state.headerStyle);
   const scrollPosition = useScrollPositionStore((state) => state.scrollPosition);
   const desktopSecSideNavBar = useDesktopSecSideNavBarStore(state => state.secSideNav);
-  const locations = useLocationsStore(state => state.locations);
+  const locations = useLocationsStore(state => state.locationsData);
 
   return (
     <header
@@ -73,12 +73,12 @@ export default function DesktopHeader () {
             LOCATIONS
             <div className="hidden group-hover:flex absolute left-0 top-full max-h-[80vh]  w-80 pt-5 overflow-scroll  no-scrollbar  justify-start">
               <ul className="relative py-2 inline-block">
-                {locations.map((item) => (
+                {locations?.map((item) => (
                   <li
-                    key={item}
+                    key={item.id}
                     className="px-3 py-2 bg-[#161415] hover:bg-black hover:bg-opacity-5 hover:backdrop-blur-sm cursor-pointer text-left"
                   >
-                    <Link href={`/location/${item}`}>{item}</Link>
+                    <Link href={`/location/${item.name}`}>{item.name}</Link>
                   </li>
                 ))}
               </ul>

@@ -123,7 +123,7 @@ const LocationForm = ({ location, action }: LocationFormProps) => {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <fieldset disabled={addLocation.isLoading || updateLocation.isLoading}>
-                <div className="grid gap-6 text-white">
+                <div className="grid gap-6 text-black">
                   <FormField
                     control={form.control}
                     name="name"
@@ -255,7 +255,7 @@ const LocationForm = ({ location, action }: LocationFormProps) => {
                 <div className="flex justify-end my-5">
                   <Button
                     disabled={addLocation.isLoading || updateLocation.isLoading}
-                    className="bg-blue-600 text-white py-2 px-7 rounded-md font-medium text-xs border border-white outline-2 outline-blue-600 active:outline"
+                    className="bg-blue-600 text-black py-2 px-7 rounded-md font-medium text-xs border border-black outline-2 outline-blue-600 active:outline"
                     type="submit"
                     data-cy="location-submit"
                   >

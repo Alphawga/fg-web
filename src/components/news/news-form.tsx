@@ -118,7 +118,7 @@ const NewsForm = ({ news, action }: NewsFormProps) => {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <fieldset disabled={addNews.isLoading || updateNews.isLoading}>
-                <div className="grid gap-6 text-white">
+                <div className="grid gap-6 text-black">
                   <FormField
                     control={form.control}
                     name="title"
@@ -177,7 +177,7 @@ const NewsForm = ({ news, action }: NewsFormProps) => {
                 <div className="flex justify-end my-5">
                   <Button
                     disabled={addNews.isLoading || updateNews.isLoading}
-                    className="bg-blue-600 text-white py-2 px-7 rounded-md font-medium text-xs border border-white outline-2 outline-blue-600 active:outline"
+                    className="bg-blue-600 text-black py-2 px-7 rounded-md font-medium text-xs border border-black outline-2 outline-blue-600 active:outline"
                     type="submit"
                     data-cy="news-submit"
                   >

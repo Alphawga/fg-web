@@ -130,7 +130,7 @@ const EventForm = ({ event, action }: EventFormProps) => {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <fieldset disabled={addEvent.isLoading || updateEvent.isLoading}>
-                <div className="grid gap-6 text-white ">
+                <div className="grid gap-6 text-black ">
                   <FormField
                     control={form.control}
                     name="title"
@@ -174,7 +174,7 @@ const EventForm = ({ event, action }: EventFormProps) => {
                       <FormItem>
                         <FormLabel>Location</FormLabel>
                         <FormControl>
-                          <select {...field} className=" cursor-pointer bg-black ">
+                          <select {...field} className=" cursor-pointer ">
                             {locationsLoading ? (
                               <option>Loading locations...</option>
                             ) : (
@@ -260,7 +260,7 @@ const EventForm = ({ event, action }: EventFormProps) => {
                 <div className="flex justify-end my-5">
                   <Button
                     disabled={addEvent.isLoading || updateEvent.isLoading}
-                    className="bg-blue-600 text-white py-2 px-7 rounded-md font-medium text-xs border border-white outline-2 outline-blue-600 active:outline"
+                    className="bg-blue-600 text-black py-2 px-7 rounded-md font-medium text-xs border border-black outline-2 outline-blue-600 active:outline"
                     type="submit"
                     data-cy="event-submit"
                   >

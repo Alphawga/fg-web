@@ -121,7 +121,7 @@ model Event {
   location    Location   @relation(fields: [location_id], references: [id])
   created_at  DateTime   @default(now())
   updated_at  DateTime   @default(now())
- deleted_at  DateTime? 
+  deleted_at  DateTime? 
 
   @@map(name: "events")
 }

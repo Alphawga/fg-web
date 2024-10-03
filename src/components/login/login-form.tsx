@@ -36,7 +36,7 @@ export default function LoginForm () {
         if (!res || res.error) {
           toast({
             variant: "destructive",
-            title: "Login failed!", // TODO: Translate text
+            title: "Login failed!",
             description: "Some unexpected error occurred.",
           });
 
@@ -44,7 +44,7 @@ export default function LoginForm () {
         }
 
         router.push("/admin");
-        toast({ description: "Logged in successfully" }); // TODO: Translate text
+        toast({ description: "Logged in successfully" });
       });
     } catch (_error) {
       console.error("error caught");
