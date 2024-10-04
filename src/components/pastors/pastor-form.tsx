@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { trpc } from "@/app/_providers/trpc-provider";
-import { News } from "@prisma/client";
+import {  Pastor } from "@prisma/client";
 import { ChangeEvent, useState } from "react";
-import { Select, SelectTrigger, SelectContent, SelectItem } from "@/components/ui/select";
 import {
   Dialog,
   DialogContent,
@@ -14,9 +13,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createNewsSchema, TcreateNewsSchema } from "@/lib/dtos";
+import { format } from "date-fns";
+import {  createPastorSchema, TCreatePastorSchema } from "@/lib/dtos";
+import { Select, SelectTrigger, SelectContent, SelectItem } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 import {
   Form,
   FormField,
@@ -25,37 +25,46 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
+import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover";
+import { Calendar } from "@/components/ui/calendar";
+import { CalendarIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
 
-interface NewsFormProps {
-  news: News;
+interface PastorFormProps {
+  pastor: Pastor;
   action: "Add" | "Edit";
 }
 
-const NewsForm = ({ news, action }: NewsFormProps) => {
+const PastorForm = ({ pastor, action }: PastorFormProps) => {
   const { toast } = useToast();
   const utils = trpc.useUtils();
   const [open, setOpen] = useState(false);
 
-  const form = useForm<TcreateNewsSchema>({
-    resolver: zodResolver(createNewsSchema),
+  const form = useForm<TCreatePastorSchema>({
+    resolver: zodResolver(createPastorSchema),
     defaultValues: {
-      title: news.title ?? "",
-      content: news.content ?? "",
-      location_id: news.location_id ?? "",
+      name: pastor.name ?? "",
+      email: pastor.email ?? "",
+      phone: pastor.phone ?? "",
+      head_pastor: pastor.head_pastor ?? false,
+      bio: pastor.bio ?? "",
+      image: pastor.image ?? undefined,
+
     },
     mode: "onChange",
   });
 
-  const addNews = trpc.createNews.useMutation({
+  const addPastor = trpc.createPastor.useMutation({
     onSuccess: async () => {
       toast({
         title: "Success",
         variant: "default",
-        description: "Successfully created News",
+        description: "Successfully created Pastor",
       });
 
-      utils.getAllNews.invalidate().then(() => {
+      utils.getAllPastors.invalidate().then(() => {
         setOpen(false);
       });
     },
@@ -65,20 +74,20 @@ const NewsForm = ({ news, action }: NewsFormProps) => {
       toast({
         title: "Error",
         variant: "destructive",
-        description: "Error creating news",
+        description: "Error creating pastor",
       });
     },
   });
 
-  const updateNews = trpc.updateNews.useMutation({
+  const updatePastor = trpc.updatePastor.useMutation({
     onSuccess: async () => {
       toast({
         title: "Success",
         variant: "default",
-        description: "Successfully updated News",
+        description: "Successfully updated Pastor",
       });
 
-      utils.getAllNews.invalidate().then(() => {
+      utils.getAllPastors.invalidate().then(() => {
         setOpen(false);
       });
     },
@@ -88,20 +97,22 @@ const NewsForm = ({ news, action }: NewsFormProps) => {
       toast({
         title: "Error",
         variant: "destructive",
-        description: "Error updating news",
+        description: "Error updating pastor",
       });
     },
   });
 
-  const onSubmit = (values: TcreateNewsSchema) => {
-    if (news.id) {
-      updateNews.mutate({ ...values, id: news.id });
+  const { data: locations, isLoading: locationsLoading } = trpc.getAllLocations.useQuery();
+
+  const onSubmit = (values: TCreatePastorSchema) => {
+    if (pastor.id) {
+      updatePastor.mutate({ ...values, id: pastor.id });
     } else {
-      addNews.mutate(values);
+      addPastor.mutate(values);
     }
   };
-
   const locationData = trpc.getAllLocations.useQuery();
+
   const uploadImageMutation = trpc.uploadImage.useMutation({
     onSuccess: (res) => {
       console.log("Upload successful:", res.url);
@@ -132,26 +143,26 @@ const NewsForm = ({ news, action }: NewsFormProps) => {
     }
   };
   return (
+
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button
             size="sm"
-            data-cy={`${action}-news`}
+            data-cy={`${action}-pastor`}
             className={`${action === "Edit" ? "w-full" : ""}`}
           >
-            {action} News
+            {action} Pastor
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{action} News</DialogTitle>
+            <DialogTitle>{action} Pastor</DialogTitle>
           </DialogHeader>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              <fieldset disabled={addNews.isLoading || updateNews.isLoading}>
-                <div className="grid gap-6 text-black">
-
+              <fieldset disabled={addPastor.isLoading || updatePastor.isLoading}>
+                <div className="grid gap-6 text-black ">
                 <FormField
       control={form.control}
       name="image"
@@ -162,7 +173,7 @@ const NewsForm = ({ news, action }: NewsFormProps) => {
             <Input
               type="file"
               accept="image/*"
-              data-cy="event-image"
+              data-cy="pastor-image"
               onChange={handleFileChange} 
             />
           </FormControl>
@@ -170,18 +181,17 @@ const NewsForm = ({ news, action }: NewsFormProps) => {
         </FormItem>
       )}
     />
-
                   <FormField
                     control={form.control}
-                    name="title"
+                    name="name"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Title</FormLabel>
                         <FormControl>
-                          <Textarea
-                            placeholder="Enter title"
-                            data-cy="news-title"
-                            className="cursor-pointer"
+                          <Input
+                            placeholder="Enter name"
+                            data-cy="pastor-title"
+                            className=" cursor-pointer "
                             {...field}
                           />
                         </FormControl>
@@ -191,15 +201,15 @@ const NewsForm = ({ news, action }: NewsFormProps) => {
                   />
                   <FormField
                     control={form.control}
-                    name="content"
+                    name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Content</FormLabel>
+                        <FormLabel>Email</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="Enter content"
-                            data-cy="news-content"
-                            className="cursor-pointer"
+                            placeholder="Enter email"
+                            data-cy="pastor-title"
+                            className=" cursor-pointer "
                             {...field}
                           />
                         </FormControl>
@@ -209,35 +219,49 @@ const NewsForm = ({ news, action }: NewsFormProps) => {
                   />
                   <FormField
                     control={form.control}
-                    name="location_id"
+                    name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Location</FormLabel>
+                        <FormLabel>Phone</FormLabel>
                         <FormControl>
-                          <Select onValueChange={field.onChange} value={field.value}>
-                            <SelectTrigger data-cy="news-location_id" className="cursor-pointer">
-                              {field.value ? locationData?.data?.find(loc => loc.id === field.value)?.name || "Select a location" : "Select a location"}
-                            </SelectTrigger>
-                            <SelectContent>
-                              {locationData?.data?.map((location) => (
-                                <SelectItem key={location.id} value={location.id}>
-                                  {location.name}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                          <Input
+                            placeholder="Enter phone"
+                            data-cy="pastor-phone"
+                            className=" cursor-pointer "
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
+                  <FormField
+                    control={form.control}
+                    name="bio"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Bio</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter phone"
+                            data-cy="pastor-phone"
+                            className=" cursor-pointer "
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+              
+   
                 </div>
                 <div className="flex justify-end my-5">
                   <Button
-                    disabled={addNews.isLoading || updateNews.isLoading}
+                    disabled={addPastor.isLoading || updatePastor.isLoading}
                     className="bg-blue-600 text-black py-2 px-7 rounded-md font-medium text-xs border border-black outline-2 outline-blue-600 active:outline"
                     type="submit"
-                    data-cy="news-submit"
+                    data-cy="pastor-submit"
                   >
                     {action === "Add" ? "Proceed" : "Edit"}
                   </Button>
@@ -251,4 +275,4 @@ const NewsForm = ({ news, action }: NewsFormProps) => {
   );
 };
 
-export default NewsForm;
+export default PastorForm;

@@ -12,6 +12,7 @@ export const createEvent = publicProcedure.input(createEventSchema)
         location_id: opts.input.location_id,
         start_date: opts.input.start_date,
         end_date: opts.input.end_date,
+        image: opts.input.image
       }
     });
   });
@@ -25,7 +26,8 @@ export const updateEvent = publicProcedure.input(updateEventSchema)
         description: opts.input.description,
         location_id: opts.input.location_id,
         start_date: opts.input.start_date,
-        end_date: opts.input.end_date
+        end_date: opts.input.end_date,
+        image: opts.input.image,
       }
     });
   });
@@ -41,6 +43,6 @@ export const deleteEvent = publicProcedure.input(deleteEventSchema)
 export const getAllEvents = publicProcedure.query(async () => {
   return await prisma.event.findMany(
 
-    { where: { deleted_at: null } }
+    { where: { deleted_at: null }, include: { location: true } }
   );
 });

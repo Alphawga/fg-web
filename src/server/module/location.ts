@@ -55,6 +55,12 @@ export const findLocationById = publicProcedure.input(findLocationByIdSchema).qu
 
 export const getSingleLocation = publicProcedure.input(getLocationByNameSchema).query(async (opts) =>{
   return await prisma.location.findFirst(
-    { where: { name: opts.input.name } }
+    {
+      where: { name: opts.input.name },
+      include: {
+        events: true,
+        news: true,
+      }
+    }
   );
 });

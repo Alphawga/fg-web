@@ -8,11 +8,13 @@ const nextConfig = {
         port: '',
         pathname: '/v1/storage/buckets/**/files/**/view',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com', 
+        port: '',
+        pathname: '/**', 
+      },
     ],
-  },
-  env: {
-    NEXT_PUBLIC_APPWRITE_ENDPOINT: process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT,
-    NEXT_PUBLIC_APPWRITE_PROJECT_ID: process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID,
   },
 };
 

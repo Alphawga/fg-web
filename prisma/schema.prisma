@@ -104,10 +104,13 @@ model Pastor {
   name        String
   email       String     @unique
   phone       String?
-  location_id String
-  location    Location   @relation(fields: [location_id], references: [id])
+  location_id String?
+  location    Location?   @relation(fields: [location_id], references: [id])
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
+  head_pastor Boolean?
+  bio         String?
+  image       String?
 
   @@map(name: "pastors")
 }
@@ -123,6 +126,7 @@ model Event {
   created_at  DateTime   @default(now())
   updated_at  DateTime   @default(now())
   deleted_at  DateTime? 
+  image         String?
 
   @@map(name: "events")
 }
@@ -133,10 +137,11 @@ model News {
   content     String
   published   Boolean    @default(false)
   location_id String
+  image       String?
   location    Location   @relation(fields: [location_id], references: [id])
   created_at  DateTime   @default(now())
   updated_at  DateTime   @default(now())
-   deleted_at         DateTime?
+  deleted_at         DateTime?
 
   @@map(name: "news")
 }
@@ -156,9 +161,19 @@ model Offering {
 model LandingPageContent {
   id          String     @id @default(uuid())
   section     String
+  about_orgainzation String
   content     String
   created_at  DateTime   @default(now())
   updated_at  DateTime   @default(now())
 
   @@map(name: "landing_page_contents")
+}
+
+model Organization {
+    id          String     @id @default(uuid())
+    name        String     @unique
+    about_us    String?
+    created_at  DateTime   @default(now())
+    updated_at  DateTime   @default(now())
+     @@map(name: "organizations")
 }

@@ -30,7 +30,8 @@ export const createEventSchema = z.object({
   description: z.string(),
   location_id: z.string(),
   start_date: z.date(),
-  end_date: z.date()
+  end_date: z.date(),
+  image: z.string()
 });
 
 export const deleteUserSchema = z.object({ id: z.string() });
@@ -47,6 +48,7 @@ export const updateEventSchema = z.object({
   location_id: z.string().optional(),
   start_date: z.date().optional(),
   end_date: z.date().optional(),
+  image: z.string().optional()
 });
 
 export type TCreateUserSchema = z.infer<typeof createUserSchema>;
@@ -82,15 +84,60 @@ export const createNewsSchema = z.object({
   id: z.string().optional(),
   title: z.string(),
   content: z.string(),
-  location_id: z.string()
+  location_id: z.string(),
+  image: z.string().optional()
 });
 
 export const updateNewsSchema = z.object({
   id: z.string().optional(),
   title: z.string(),
   content: z.string(),
-  location_id: z.string()
+  location_id: z.string(),
+  image: z.string().optional()
 });
+
+export const createOrganizationSchema = z.object({
+  name: z.string().min(1, "Organization name is required")
+    .max(255),
+  about_us: z.string().optional()
+});
+
+export const updateOrganizationSchema = z.object({
+  id: z.string().uuid("Invalid organization ID"), // Ensures ID is a valid UUID
+  name: z.string().min(1, "Organization name is required")
+    .max(255),
+  about_us: z.string().optional()
+    .nullable(),
+});
+
+export const createPastorSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  phone: z.string().optional(),
+  location_id: z.string(),
+  head_pastor: z.boolean().optional(),
+  bio: z.string().optional(),
+  image: z.string().optional(),
+});
+
+export const updatePastorSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  email: z.string().email(),
+  phone: z.string().optional(),
+  location_id: z.string(),
+  head_pastor: z.boolean().optional(),
+  bio: z.string().optional(),
+  image: z.string().optional(),
+});
+
+export const deletePastorSchema = z.object({ id: z.string() });
+
+export const deleteOrganizationSchema = z.object({ id: z.string().uuid("Invalid organization ID") });
+
+export const findOrganizationByIdSchema = z.object({ id: z.string().uuid("Invalid organization ID") });
+
+export const getOrganizationByNameSchema = z.object({ name: z.string().min(1, "Organization name is required") });
 
 export const findLocationByIdSchema = z.object({ location_id: z.string() });
 
@@ -101,3 +148,7 @@ export const deleteNewsSchema = z.object({ id: z.string() });
 export type TcreateNewsSchema = z.infer<typeof createNewsSchema>;
 
 export type FindLocationByIdSchema = z.infer<typeof findLocationByIdSchema >;
+
+export type TCreateorganizationSchema = z.infer<typeof createOrganizationSchema>;
+
+export type TCreatePastorSchema = z.infer<typeof createPastorSchema>;

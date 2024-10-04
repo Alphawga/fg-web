@@ -1,37 +1,41 @@
-import DeleteNewsModal from "@/components/news/delete-news";
-import NewsForm from "@/components/news/news-form";
-import { Location, News } from "@prisma/client";
+
+import { format } from "date-fns";
 import { DropdownMenu, DropdownMenuLabel, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
+import organizationForm from "./organization-form";
+import {  Organization } from "@prisma/client";
+import DeleteorganizationModal from "./delete-organization";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header";
+import { trpc } from "@/app/_providers/trpc-provider";
 import ViewImage from "@/components/view-image";
+import OrganizationForm from "./organization-form";
 
 interface ActionProps {
-  news: News;
+  organization: Organization;
 }
 
-function NewsAction ({ news }: ActionProps) {
+function Action ({ organization }: ActionProps) {
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-8 w-8 p-0" data-cy="news-action">
+          <Button variant="ghost" className="h-8 w-8 p-0" data-cy="organization-action">
             <span className="sr-only">Open menu</span>
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>News actions</DropdownMenuLabel>
+          <DropdownMenuLabel>organization actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <NewsForm action="Edit" news={news} />
+            <OrganizationForm action="Edit" organization={organization} />
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <DeleteNewsModal id={news.id} />
+            <DeleteorganizationModal id={organization.id} />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -39,51 +43,29 @@ function NewsAction ({ news }: ActionProps) {
   );
 }
 
-export const columns: ColumnDef<News & {location: Location }>[] = [
+export const columns: ColumnDef<Organization>[] = [
   {
-    id: "title",
-    accessorKey: "title",
+    id: "name",
+    accessorKey: "name",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Title" />
+      <DataTableColumnHeader column={column} title="organization name" />
     ),
     cell: ({ row }) => (
       <div className="py-0.5 text-sm font-medium select-none text-nowrap">
-        {row.getValue("title")}
+        {row.getValue("name")}
       </div>
     ),
   },
   {
-    id: "content",
-    accessorKey: "content",
+    id: "about_us",
+    accessorKey: "about_us",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Content" />
+      <DataTableColumnHeader column={column} title="Description" />
     ),
     cell: ({ row }) => (
       <div className="py-0.5 text-sm font-medium select-none text-nowrap">
-        {row.getValue("content")}
+        {row.getValue("about_us")}
       </div>
-    ),
-  },
-  {
-    id: "location_id",
-    accessorKey: "location_id",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Location ID" />
-    ),
-    cell: ({ row }) => (
-      <div className="py-0.5 text-sm font-medium select-none text-nowrap">
-        {row.original.location.name}
-      </div>
-    ),
-  },
-  {
-    id: "image",
-    accessorKey: "image",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Image" />
-    ),
-    cell: ({ row }) => (
-      <ViewImage imageUrl={row.getValue("image")} />
     ),
   },
   {
@@ -92,7 +74,6 @@ export const columns: ColumnDef<News & {location: Location }>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Actions" />
     ),
-    cell: ({ row }) => <NewsAction news={row.original} />,
+    cell: ({ row }) => <Action organization={row.original} />,
   },
 ];
-

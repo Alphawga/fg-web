@@ -7,7 +7,8 @@ export const createNews = publicProcedure.input(createNewsSchema).mutation(async
     data: {
       title: opts.input.title,
       content: opts.input.content,
-      location_id: opts.input.location_id
+      location_id: opts.input.location_id,
+      image: opts.input.image
     }
   });
 });
@@ -16,9 +17,11 @@ export const updateNews = publicProcedure.input(updateNewsSchema).mutation(async
   return await prisma.news.update({
     where: { id: opts.input.id },
     data: {
+      ...opts.input,
       title: opts.input.title,
       content: opts.input.content,
-      location_id: opts.input.location_id
+      location_id: opts.input.location_id,
+      image: opts.input.image
     }
   });
 });
@@ -34,6 +37,6 @@ export const deleteNews = publicProcedure.input(deleteNewsSchema)
 
 export const getAllNews = publicProcedure.query(async ()=>{
   return await prisma.news.findMany(
-    { where: { deleted_at: null } }
+    { where: { deleted_at: null }, include: { location: true } }
   );
 });

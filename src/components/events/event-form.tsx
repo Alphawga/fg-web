@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { trpc } from "@/app/_providers/trpc-provider";
 import { Event } from "@prisma/client";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { format } from "date-fns";
 import { createEventSchema, TCreateEventSchema } from "@/lib/dtos";
+import { Select, SelectTrigger, SelectContent, SelectItem } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import {
   Form,
@@ -29,6 +30,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Textarea } from "@/components/ui/textarea";
 
 interface EventFormProps {
   event: Event;
@@ -47,7 +49,6 @@ const EventForm = ({ event, action }: EventFormProps) => {
       description: event.description ?? "",
       location_id: event.location_id,
       start_date: event.start_date ? new Date() : new Date(),
-
       end_date: event.end_date ? new Date() : new  Date(),
 
     },
@@ -109,7 +110,37 @@ const EventForm = ({ event, action }: EventFormProps) => {
       addEvent.mutate(values);
     }
   };
+  const locationData = trpc.getAllLocations.useQuery();
 
+  const uploadImageMutation = trpc.uploadImage.useMutation({
+    onSuccess: (res) => {
+      console.log("Upload successful:", res.url);
+    },
+    onError: (error) => {
+      console.error("Error uploading to Cloudinary:", error);
+    },
+  });
+  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target?.files?.[0];
+    if (file) {
+      try {
+        const base64File = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.onerror = reject;
+          reader.readAsDataURL(file); 
+        });
+  
+        const response = await uploadImageMutation.mutateAsync({ file: base64File });
+        if (response.url) {
+          console.log("Image uploaded", response.url)
+          form.setValue("image", response.url); 
+        }
+      } catch (error) {
+        console.error("Error in file upload:", error);
+      }
+    }
+  };
   return (
 
     <>
@@ -131,6 +162,24 @@ const EventForm = ({ event, action }: EventFormProps) => {
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <fieldset disabled={addEvent.isLoading || updateEvent.isLoading}>
                 <div className="grid gap-6 text-black ">
+                <FormField
+      control={form.control}
+      name="image"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Image</FormLabel>
+          <FormControl>
+            <Input
+              type="file"
+              accept="image/*"
+              data-cy="event-image"
+              onChange={handleFileChange} 
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
                   <FormField
                     control={form.control}
                     name="title"
@@ -156,7 +205,7 @@ const EventForm = ({ event, action }: EventFormProps) => {
                       <FormItem>
                         <FormLabel>Description</FormLabel>
                         <FormControl>
-                          <Input
+                          <Textarea
                             placeholder="Enter description"
                             data-cy="event-description"
                             className="cursor-pointer "
@@ -167,24 +216,25 @@ const EventForm = ({ event, action }: EventFormProps) => {
                       </FormItem>
                     )}
                   />
-                  <FormField
+                                   <FormField
                     control={form.control}
                     name="location_id"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Location</FormLabel>
                         <FormControl>
-                          <select {...field} className=" cursor-pointer ">
-                            {locationsLoading ? (
-                              <option>Loading locations...</option>
-                            ) : (
-                              locations?.map((location) => (
-                                <option key={location.id} value={location.id}>
+                          <Select onValueChange={field.onChange} value={field.value}>
+                            <SelectTrigger data-cy="news-location_id" className="cursor-pointer">
+                              {field.value ? locationData?.data?.find(loc => loc.id === field.value)?.name || "Select a location" : "Select a location"}
+                            </SelectTrigger>
+                            <SelectContent>
+                              {locationData?.data?.map((location) => (
+                                <SelectItem key={location.id} value={location.id}>
                                   {location.name}
-                                </option>
-                              ))
-                            )}
-                          </select>
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -207,7 +257,7 @@ const EventForm = ({ event, action }: EventFormProps) => {
                                 )}
                               >
                                 {field.value ? format(field.value, "PPP") : "Select date"}
-                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                <CalendarIcon className="ml-auto h-4 w-4 " />
                               </Button>
                             </FormControl>
                           </PopoverTrigger>
@@ -240,7 +290,7 @@ const EventForm = ({ event, action }: EventFormProps) => {
                                 )}
                               >
                                 {field.value ? format(field.value, "PPP") : "Select date"}
-                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                <CalendarIcon className="ml-auto h-4 w-4 " />
                               </Button>
                             </FormControl>
                           </PopoverTrigger>

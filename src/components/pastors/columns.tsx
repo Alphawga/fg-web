@@ -4,19 +4,20 @@ import { DropdownMenu, DropdownMenuLabel, DropdownMenuTrigger } from "@radix-ui/
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
-import EventForm from "./event-form";
-import { Event, Location } from "@prisma/client";
+import EventForm from "./pastor-form";
+import { Event, Location, Pastor } from "@prisma/client";
 import DeleteEventModal from "./delete-event";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header";
 import { trpc } from "@/app/_providers/trpc-provider";
 import ViewImage from "@/components/view-image";
+import PastorForm from "./pastor-form";
 
 interface ActionProps {
-  event: Event;
+  pastor: Pastor;
 }
 
-function Action ({ event }: ActionProps) {
+function Action ({ pastor }: ActionProps) {
   return (
     <>
       <DropdownMenu>
@@ -27,14 +28,14 @@ function Action ({ event }: ActionProps) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Event actions</DropdownMenuLabel>
+          <DropdownMenuLabel>Pastor actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <EventForm action="Edit" event={event} />
+            <PastorForm action="Edit" pastor={pastor} />
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <DeleteEventModal id={event.id} />
+            <DeleteEventModal id={pastor.id} />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -42,70 +43,45 @@ function Action ({ event }: ActionProps) {
   );
 }
 
-export const columns: ColumnDef<Event & {location: Location }>[] = [
-  {
-    id: "title",
-    accessorKey: "title",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Event title" />
-    ),
-    cell: ({ row }) => (
-      <div className="py-0.5 text-sm font-medium select-none text-nowrap">
-        {row.getValue("title")}
-      </div>
-    ),
-  },
-  {
-    id: "description",
-    accessorKey: "description",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Description" />
-    ),
-    cell: ({ row }) => (
-      <div className="py-0.5 text-sm font-medium select-none text-nowrap">
-        {row.getValue("description")}
-      </div>
-    ),
-  },
+export const columns: ColumnDef<Pastor>[] = [
   {
     id: "name",
     accessorKey: "name",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Location Name" />
-    ),
-    cell: ({ row }) => {
-      const { data: foundLocation } = trpc.findLocationById.useQuery({ location_id: row.original.location_id });
-
-      return (
-        <div className="py-0.5 text-sm font-medium select-none text-nowrap">
-          {foundLocation?.name}
-        </div>
-      );
-    }
-  },
-  {
-    id: "start_date",
-    accessorKey: "start_date",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Start Date" />
-    ),
-    cell: ({ row }) => (
-      <div className="py-0.5 text-sm font-medium text-nowrap select-none">
-        {format(new Date(row.getValue("start_date")), "PPP")}
-      </div>
-    ),
-  },
-  {
-    id: "end_date",
-    accessorKey: "end_date",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="End Date" />
+      <DataTableColumnHeader column={column} title="Event name" />
     ),
     cell: ({ row }) => (
       <div className="py-0.5 text-sm font-medium select-none text-nowrap">
-        {format(new Date(row.getValue("end_date")), "PPP")}
+        {row.getValue("name")}
       </div>
     ),
+  },
+  {
+    id: "email",
+    accessorKey: "email",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Email" />
+    ),
+    cell: ({ row }) => (
+      <div className="py-0.5 text-sm font-medium select-none text-nowrap">
+        {row.getValue("email")}
+      </div>
+    ),
+  },
+  {
+    id: "bio",
+    accessorKey: "Bio",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Bio" />
+    ),
+    cell: ({ row }) => {
+    
+      return (
+        <div className="py-0.5 text-sm font-medium select-none text-nowrap">
+          {row?.original.bio}
+        </div>
+      );
+    }
   },
   {
     id: "image",
@@ -123,6 +99,6 @@ export const columns: ColumnDef<Event & {location: Location }>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Actions" />
     ),
-    cell: ({ row }) => <Action event={row.original} />,
+    cell: ({ row }) => <Action pastor={row.original} />,
   },
 ];

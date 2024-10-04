@@ -1,3 +1,4 @@
+import { trpc } from "@/app/_providers/trpc-provider";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -19,3 +20,4 @@ export function getBaseUrl () {
   // assume localhost
   return `http://localhost:${process.env.PORT ?? 8079}`;
 }
+

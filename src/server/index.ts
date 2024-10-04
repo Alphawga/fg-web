@@ -3,6 +3,9 @@ import { createEvent, deleteEvent, getAllEvents, updateEvent } from "./module/ev
 import { publicProcedure, router } from "./trpc";
 import { createLocation, deleteLocation, updateLocation, getAllLocations, findLocationById, getSingleLocation } from "./module/location";
 import { createNews, deleteNews, getAllNews, updateNews } from "./module/news";
+import { uploadImage } from "./module/cloudinary";
+import { createOrganization, deleteOrganization, findOrganizationById, getAllOrganizations, getOrganizationByName, updateOrganization } from "./module/organization";
+import { createPastor, deletePastor, getAllPastors, updatePastor } from "./module/pastors";
 
 export const appRouter = router({
   createUser,
@@ -23,6 +26,17 @@ export const appRouter = router({
   getAllNews,
   findLocationById,
   getSingleLocation,
+  uploadImage,
+  createOrganization,
+  updateOrganization,
+  deleteOrganization,
+  getAllOrganizations,
+  findOrganizationById,
+  getOrganizationByName,
+  createPastor,
+  updatePastor,
+  deletePastor,
+  getAllPastors,
   healthCheck: publicProcedure.query(() => {
     return { message: "API up and running..." };
   }),

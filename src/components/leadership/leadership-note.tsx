@@ -11,7 +11,7 @@ export default function LeadershipNote () {
           </q>
         </h2>
         <h3 className="text-lg text-white mt-10">
-          - RIVER VALLEY CHURCH LEAD PASTOR
+          - FULL GOSPEL CHURCH LEAD PASTOR
         </h3>
       </div>
     </div>

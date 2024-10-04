@@ -30,7 +30,7 @@ export default function Leadership () {
           </p>
           <p className="text-white mt-3 text-base xs:max-md:text-base tracking-wider">
             {" "}
-            RIVER VALLEY CHURCH LEAD PASTOR
+            FULL GOSPEL CHURCH LEAD PASTOR
           </p>
         </div>
         <div>

@@ -28,9 +28,14 @@ export const links = [
     icon: <MdEventNote  data-cy="eventIcon" className="size-5 mr-2" />,
   },
   {
-    name: "Locations",
-    url: "/admin/locations",
+    name: "Organization",
+    url: "/admin/orgs",
     icon: <IoLocationOutline  data-cy="locationIcon" className="size-5 mr-2" />,
+  },
+  {
+    name: "Pastors",
+    url: "/admin/pastors",
+    icon: <LuUser  data-cy="locationIcon" className="size-5 mr-2" />,
   },
   {
     name: "News",
