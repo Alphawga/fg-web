@@ -11,7 +11,7 @@ export default function LeadershipNote () {
           </q>
         </h2>
         <h3 className="text-lg text-white mt-10">
-          - FULL GOSPEL CHURCH OF GOD FORMER NATIONAL OVERSEA (Current African project cordinator)
+          - FULL GOSPEL CHURCH OF GOD FORMER NATIONAL OVERSEER (CURRENT  AFRICAN PROJECT CORDINATOR)
         </h3>
       </div>
     </div>

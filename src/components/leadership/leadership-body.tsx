@@ -50,26 +50,27 @@ export default function LeadershipBody () {
           <div className="relative h-[80vh] xs:max-md:h-[50vh] w-full">
             <Image
               fill={true}
-              src="/leadership/group1.jpg"
+              src="/IMG_5826.JPG"
               alt="pastor Logo"
               className="rounded-lg object-cover object-center"
             />
           </div>
           <p className="relative xs:max-md:-top-10 xs:max-md:p-2 text-[#aba7a5] mt-2 xs:max-md:text-white xs:max-md:font-bold xs:max-md:bg-black xs:max-md:bg-opacity-50 xs:max-md:backdrop-blur-md">
-            Connor Daniel
+          Bishop Uwem Noah
+          National Overseer
           </p>
         </div>
         <div className="relative w-1/2 xs:max-md:w-full flex flex-col">
           <div className="relative h-[80vh] xs:max-md:h-[50vh] w-full">
             <Image
               fill={true}
-              src="/leadership/group2.jpg"
+              src="/IMG_5858.JPG"
               alt="pastor Logo"
               className="rounded-lg object-cover object-center"
             />
           </div>
           <p className="relative xs:max-md:-top-10 xs:max-md:p-2 text-[#aba7a5] mt-2 xs:max-md:text-white xs:max-md:font-bold xs:max-md:bg-black xs:max-md:bg-opacity-50 xs:max-md:backdrop-blur-md">
-            Logan Mac
+          Bishop Uwem & Rev Rose Noah
           </p>
         </div>
       </div>

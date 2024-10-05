@@ -30,7 +30,7 @@ export default function Leadership () {
           </p>
           <p className="text-white mt-3 text-base xs:max-md:text-base tracking-wider">
             {" "}
-            FULL GOSPEL CHURCH OF GOD FORMER NATIONAL OVERSEA (Current African project cordinator)
+            FULL GOSPEL CHURCH OF GOD FORMER NATIONAL OVERSEER (CURRENT  AFRICAN PROJECT CORDINATOR)
           </p>
         </div>
         <div>
