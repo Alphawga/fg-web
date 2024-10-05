@@ -89,7 +89,7 @@ export default function DesktopHeader () {
         <nav>
           <ul className="flex items-center gap-10 font-medium">
             <li className="relative">
-              <Link href="https://www.cogwm.org/give/" className="grow-hover">
+              <Link href="https://www.cogwm.org/shop/abiola/" className="grow-hover">
                 GIVE
               </Link>
             </li>

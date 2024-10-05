@@ -9,7 +9,7 @@ export default function HeroSection () {
         <div className="absolute bottom-5 space-y-20 xs:max-md:space-y-5 w-full">
           <div className="text-white space-y-5">
             <h2 className="text-lg xs:max-md:text-base xs:max-md:tracking-normal tracking-widest">
-              WELCOME TO FULL GOSPEL CHURCH
+              WELCOME TO FULL GOSPEL CHURCH OF GOD
             </h2>
             <h1 className="text-5xl xs:max-md:text-3xl">Who We Are</h1>
           </div>

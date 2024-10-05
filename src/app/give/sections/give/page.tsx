@@ -18,7 +18,7 @@ export default function Give () {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 w-full md:max-w-3xl">
             {locations.map((state, index) => (
-              <Link key={index} href="https://myrock.rivervalley.org/page/3181">
+              <Link key={index} href="https://www.cogwm.org/shop/abiola/">
                 <button className="bg-[#D3B975] w-full py-2 text-xl text-[#161415] font-medium rounded-full hover:bg-white">
                   {state}
                 </button>

@@ -69,14 +69,14 @@ export default function MobileHeader () {
           <Image fill={true} src="/church-logo.png" alt="church logo" />
         </div>
         <p className="trackin">FULL GOSPEL</p>
-        <p className="tracking-wider">CHURCH</p>
+        <p className="tracking-wider">CHURCH OF GOD</p>
       </Link>
 
       {/* nav */}
       <nav className="w-[20%] flex justify-end bg-red-40">
         <ul className="flex items-center justify-end gap-5 font-light text-sm text-white ">
           <li className="relative">
-            <Link href="https://www.cogwm.org/give/" className="grow-hover">
+            <Link href="https://www.cogwm.org/shop/abiola/" className="grow-hover">
               GIVE
             </Link>
           </li>

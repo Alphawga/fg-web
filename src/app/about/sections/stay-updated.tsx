@@ -8,7 +8,7 @@ export default function StayUpdated () {
         <div className="absolute z-10 size-full bg-gradient-to-r from-stone-950"></div>
         <Image
           fill={true}
-          src="/about/stay-updated.jpg"
+          src="/bishop.jpg"
           alt="background image"
           className="object-cover"
         />

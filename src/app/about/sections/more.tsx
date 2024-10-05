@@ -6,19 +6,19 @@ export default function More () {
     <section className="bg-[#231f20] pb-24 xs:max-md:pt-10">
       <div className="w-[80%] xs:max-md:w-[90%] mx-auto">
         <h2 className="text-xl xs:max-md:text-base text-white tracking-widest xs:max-md:tracking-normal font-medium">
-          MORE ABOUT FULL GOSPEL CHURCH
+          MORE ABOUT FULL GOSPEL CHURCH OF GOD
         </h2>
         <div className="flex w-full xs:max-md:flex-col justify-between xs:max-md:gap-5 h-[70vh] xs:max-md:h-auto mt-10 xs:max-md:mt-3">
           {[
             {
               title: "Leadership",
-              text: "Pastors Rob & Becca founded River Valley Church in an elementary school in 1995. It has since grown into a thriving church with nearly 10,000 in attendance across ten U.S. campuses and one international campus (Mbekelweni, eSwatini) with plans for further expansion in the future.",
+              text: " Alex and Leah Abiola served as the overseers to Nigeria and Superintendents to anglophone West Africa and currently serving as the Africa Project Coordinator With a ministry that includes ministerial education, medical missions, church building family and marital counseling, substance abuse counseling, and outreach to children and poor, they have touched many lives.",
               path: "/leadership",
               image: "/leadership/group2.JPG",
             },
             {
               title: "Church On Mission",
-              text: "Pastors Rob & Becca founded River Valley Church in an elementary school in 1995. It has since grown into a thriving church with nearly 10,000 in attendance across ten U.S. campuses and one international campus (Mbekelweni, eSwatini) with plans for further expansion in the future.",
+              text: " They served as missionaries to the Republic of Ireland from December 2004 to July 2010. From 2010-2012, they were missionaries in Nigeria. From 2012 to 2024, they have served as missionaries/Administrative Overseer, and from 2018 to 2024 also serve as Superintendent to the anglophone West Africa countries. Living in Lagos, Nigeria, the Abiolas are strategically well located to minister to the entire country and the surrounding countries.",
               path: "https://www.churchofgodcommunications.com/churchonmission",
               image: "/about/challenge.png",
             },

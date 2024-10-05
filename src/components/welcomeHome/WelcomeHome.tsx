@@ -27,11 +27,11 @@ export default function WelcomeHome () {
         <div>
           <p className="text-slate-200 text-base leading-8 xs:max-md:text-base xs:max-md:pr-16">
             {ogranizaitonData.data?.about_us}
-            {/* Welcome Home is your first step at Full Gospel Church Of God. You
+            Welcome Home is your first step at Full Gospel Church Of God. You
             were created for a purpose, and we want to help you discover that
             purpose! You will build community, understand how God made you, and
             dive deeper into your walk with Jesus. We can&apos;t wait to meet
-            you! */}
+            you!
           </p>
         </div>
         <div>
