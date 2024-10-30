@@ -7,40 +7,27 @@ export default function LeadershipBody () {
         <div>
           <p className="text-[#aba7a5]">
             <span className="text-white font-semibold underline">
-              Alex and Leah Abiola
-            </span> served as the overseers to Nigeria and Superintendents to anglophone
-            West Africa and currently serving as the Africa Project Coordinator
-            With a ministry that includes ministerial education, medical
-            missions, church building family and marital counseling, substance
-            abuse counseling, and outreach to children and poor, they have
-            touched many lives.
+              Bishop Dr. Uwem Noah Joseph
+            </span> was born on February 24, 1972, in Ibiakpan No. 2 Otoro Abak, Abak Local Government Area of Akwa Ibom State.
+            His journey in ministry began after a profound encounter with the Lord in June 1993. Since then, he has dedicated his
+            life to serving God and leading the Full Gospel Church of God.
           </p>
           <p className="text-[#aba7a5] mt-10 xs:max-md:mt-5">
-            They served as missionaries to the Republic of Ireland from December
-            2004 to July 2010. From 2010-2012, they were missionaries in
-            Nigeria. From 2012 to 2024, they have served as
-            missionaries/Administrative Overseer, and from 2018 to 2024 also
-            serve as Superintendent to the anglophone West Africa countries.
-            Living in Lagos, Nigeria, the Abiolas are strategically well located
-            to minister to the entire country and the surrounding countries.
+            With extensive educational background including degrees in Christian Education, Ministry, and Church Administration/Management,
+            Bishop Dr. Uwem Noah has served in various capacities within the church. His service includes roles as Sunday School Teacher,
+            Prayer Band Director, and Local and District Evangelism Director, showcasing his commitment to spiritual leadership and education.
           </p>
         </div>
         <div>
           <p className="text-[#aba7a5]">
-            The Abiolas work fervently and constantly, abounding in the work of
-            the lord, demonstrating God&apos;s love, wisdom, and peace that the
-            church may stand perfect and complete in order to make progress and
-            move forward in all the will of God, fulfilling fearlessly the
-            calling of God with effectiveness.
+            His academic achievements include a Diploma from Full Gospel School of Theology, a Bachelor`&apos;`,s degree in Christian Education
+            from Lagos Christian College, a Master`&apos;`,s Degree in Ministry, and a Doctorate in Church Administration/Management. Recently,
+            he completed his B.Sc in Sociology and Anthropology from the University of Uyo in 2023.
           </p>
           <p className="text-[#aba7a5] mt-10 xs:max-md:mt-5">
-            Alex and Leah coordinate short-term mission trips to Nigeria and the
-            anglophone countries of Western Africa and the whole Africa in the
-            area of ministerial training, leadership empowerment, and medical
-            assistance. One of their projects is to teach pastors to be
-            self-supporting and effective leaders. They also help the needy and
-            provide medical assistance. In the future, they would like also to
-            build schools, hospitals, orphanages, and churches.
+            As the National Overseer of Nigeria from 2024, Bishop Dr. Uwem Noah Joseph leads with vision and dedication. Together with
+            his wife, Rev. (Mrs.) Rose Uwem Noah, they are blessed with four male children: Success, Destiny, Dignity, and Majesty.
+            Their ministry focuses on spiritual growth, leadership development, and church expansion throughout Nigeria.
           </p>
         </div>
       </div>
@@ -50,27 +37,53 @@ export default function LeadershipBody () {
           <div className="relative h-[80vh] xs:max-md:h-[50vh] w-full">
             <Image
               fill={true}
-              src="/IMG_5826.JPG"
-              alt="pastor Logo"
+              src="/pts.jpeg"
+              alt="Bishop Dr. Uwem Noah Joseph"
               className="rounded-lg object-cover object-center"
             />
           </div>
           <p className="relative xs:max-md:-top-10 xs:max-md:p-2 text-[#aba7a5] mt-2 xs:max-md:text-white xs:max-md:font-bold xs:max-md:bg-black xs:max-md:bg-opacity-50 xs:max-md:backdrop-blur-md">
-          Bishop Uwem Noah
-          National Overseer
+            Bishop Dr. Uwem Noah Joseph
+            National Overseer
           </p>
         </div>
         <div className="relative w-1/2 xs:max-md:w-full flex flex-col">
           <div className="relative h-[80vh] xs:max-md:h-[50vh] w-full">
             <Image
               fill={true}
-              src="/IMG_5858.JPG"
-              alt="pastor Logo"
+              src="/IMG_5826.JPG"
+              alt="Bishop Dr. Uwem Noah Joseph and Rev. Rose Uwem Noah"
               className="rounded-lg object-cover object-center"
             />
           </div>
           <p className="relative xs:max-md:-top-10 xs:max-md:p-2 text-[#aba7a5] mt-2 xs:max-md:text-white xs:max-md:font-bold xs:max-md:bg-black xs:max-md:bg-opacity-50 xs:max-md:backdrop-blur-md">
-          Bishop Uwem & Rev Rose Noah
+            Bishop Dr. Uwem Noah Joseph & Rev. Rose Uwem Noah
+          </p>
+        </div>
+      </div>
+
+      <div className="relative flex xs:max-md:flex-col justify-center gap-10 xs:max-md:gap-5 bg-[#231f20] leading-8 mt-20">
+        <div>
+          <p className="text-[#aba7a5]">
+            <span className="text-white font-semibold underline">
+              Rev. (Mrs.) Rose Uwem Noah
+            </span>, born on October 21, 1987, is a native of Abak L.G.A., Akwa Ibom State, Nigeria.
+            She is married to Bishop Dr. Uwem Noah Joseph and serves as the National Women President of the Full Gospel Church of God.
+          </p>
+          <p className="text-[#aba7a5] mt-10 xs:max-md:mt-5">
+            Rev. Rose is a multifaceted professional, working as an Administrator, Educationist, Pastor, and Digital Creator.
+            She is also deeply involved in humanitarian services, demonstrating her commitment to serving others and making a positive impact in her community.
+          </p>
+        </div>
+        <div>
+          <p className="text-[#aba7a5]">
+            Her impressive educational background includes an HND, PGDE, and M.Ed, with a Ph.D. currently in progress.
+            This academic prowess complements her roles in the church and society.
+          </p>
+          <p className="text-[#aba7a5] mt-10 xs:max-md:mt-5">
+            Rev. Rose is known for her fear of God, value for souls, and dedication to reaching out to the poor and needy.
+            Her love for service, coupled with her hardworking nature and humility, makes her an integral part of the leadership team
+            at Full Gospel Church of God, supporting the vision and ministry of her husband, Bishop Dr. Uwem Noah Joseph.
           </p>
         </div>
       </div>

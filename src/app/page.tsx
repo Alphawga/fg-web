@@ -12,6 +12,7 @@ import Leadership from "@/components/leadership/leadership";
 import styleHeader from "@/lib/style-header";
 import WelcomeHome from "@/components/welcomeHome/WelcomeHome";
 import NewsScroll from "@/components/news/news-scroll";
+import Projects from "@/components/projects/project";
 
 export default function Home () {
   const updateHeaderState: (id: string) => void = useShowHeaderStore((state) => state.setHeaderState);
@@ -26,8 +27,9 @@ export default function Home () {
       <WelcomeHome />
       <ScrollableLocation />
       <NewsScroll  location={undefined} news={undefined}/>
-      <BeInspired />
       <Leadership />
+      <BeInspired />
+      <Projects />
       <HomeFooter />
     </main>
   );
